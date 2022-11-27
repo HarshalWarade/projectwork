@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%=workerID%>
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="worker-image">
+            <img src="https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg?w=2000"
+                alt="loading...">
+        </div>
+        <div class="worker-contents">
+            <p class="worker-details-field"><span class="boldit">workerID</span>: <%=workerID%>
+            </p>
+            <p class="worker-details-field"><span class="boldit">Name</span>: <%=workerName%>
+            </p>
+            <p class="worker-details-field"><span class="boldit">Email</span>: <%=workerEmail%>
+            </p>
+            <p class="worker-details-field"><span class="boldit">Joined Since: </span>
+                <%=workerJoined%>
+            </p>
+            <div class="worker-details-field"><span class="boldit">Salary/Month: </span>Rs. 9,000</div>
+        </div>
+    </div>
+
+    <div class="offersSections">
+        <h2>Joining offers: </h2>
+        <div class="offers-list">
+            <ul>
+                <li class="details-holder">
+                    <div class="addressClient">
+                        <a href="">Address of client1</a>
+                    </div>
+                    <div class="choice">
+                        <a href="" class="offer accept">Accept</a>
+                        <a href="" class="offer reject">Reject</a>
+                    </div>
+                </li>
+                <li class="details-holder">
+                    <div class="addressClient">
+                        <a href="">Address of client1</a>
+                    </div>
+                    <div class="choice">
+                        <a href="" class="offer accept">Accept</a>
+                        <a href="" class="offer reject">Reject</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
