@@ -6,14 +6,8 @@
     font-family: 'Ubuntu', sans-serif;
     outline: none;
 }
-
-.navbar{
-    /* border-bottom: 1px solid #ccc; */
-    height: 15vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
+*::selection{
+    background-color: rgba(112, 114, 255, 0.155);
 }
 .navbar a{
     text-decoration: none;
@@ -55,6 +49,7 @@
     border-bottom: 1px solid #999;
     /* margin-bottom: 20px; */
     color: #777;
+    font-size: 18px;
     padding: 20px 0;
 }
 .content{
@@ -124,6 +119,9 @@ p.commonText{
     padding: 30px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.09);
     transition: 0.4s ease;
+}
+.display .card h2{
+    font-size: 24px;
 }
 .display .card:nth-child(2){
     transform: translateY(-20px);

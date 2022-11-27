@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>siteName</title>
+    <title>User Registration</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">WorkerRegister</a>
+            <a class="navbar-brand" href="#">UserRegister</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -35,10 +35,10 @@
                         <a class="nav-link" href="#">Areas-Available</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/userRegistration">UserRegister</a>
+                        <a class="nav-link active" href="/userRegistration">UserRegister</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/pushtoform">WorkerRegister</a>
+                        <a class="nav-link" href="/pushtoform">WorkerRegister</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">UerLogin</a>
@@ -55,18 +55,13 @@
         </div>
     </nav>
     <div class="container my-5">
-        <div class="body-register">
-            <p class="requestP">We request you to read the <b><a href="/tandc">terms and conditions</a></b> before you
-                register as a worker here.</p>
-            <p class="requestP">After successful registration, you shall get an unique <b>workerID</b> and
-                <b>password</b>.
-                We request you to save it somewhere. Though they are saved in the website.</p>
-        </div>
-    </div>
-    <div class="container my-5">
+        <h1 style="text-align: center;">Hey! We'll be happy to have you.</h1>
+        <br>
+        <p class="lead" style="text-align: center;">Read out our <a href="">terms and conditions</a> before registring
+            on this site.</p>
 
         <div class="form">
-            <form class="row g-3" action="/registerWorker" method="post">
+            <form class="row g-3" action="/registerUser" method="post">
                 <div class="col-md-6">
                     <label for="inputEmail4" class="form-label">Your name here: </label>
                     <input type="text" name="name" class="form-control" id="inputEmail4" autocomplete="off" required>
@@ -86,15 +81,10 @@
                     <input type="password" class="form-control" name="conpassword" id="inputPassword4"
                         autocomplete="off" required>
                 </div>
-                <div class="col-10">
+                <div class="col-12">
                     <label for="inputAddress" class="form-label">Address</label>
                     <input type="text" class="form-control" id="inputAddress" name="address1"
                         placeholder="Enter your permanent address here" autocomplete="off" required>
-                </div>
-                <div class="col-2">
-                    <label for="inputAddress" class="form-label">Salary/Month</label>
-                    <input type="number" class="form-control" id="inputAddress" name="salary" autocomplete="off"
-                        value="9000" disabled>
                 </div>
                 <div class="col-12">
                     <label for="inputAddress2" class="form-label">Address 2 (Optional)</label>
@@ -102,46 +92,29 @@
                         placeholder="Optional field, can enter the address of your place where you are living temporarily"
                         autocomplete="off">
                 </div>
-                <div class="col-md-2">
-                    <label for="inputCity" class="form-label">Place of work: </label>
-                    <input type="text" class="form-control" id="inputCity" value="Sai Nagar, Amravati" disabled>
+                <div class="col-md-6">
+                    <label for="inputCity" class="form-label">Place of residence: </label>
+                    <input type="text" class="form-control" id="inputCity"
+                        value="Sai Nagar, Amravati (Workers only available for SaiNagar) " disabled>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="inputPassword4" class="form-label">Your contact number here: </label>
                     <input type="number" class="form-control" name="phone" id="inputPassword4" autocomplete="off"
                         required>
-                </div>
-                <div class="col-md-6">
-                    <label for="inputState" class="form-label">Nagar you want to work?</label>
-                    <select id="inputState" class="form-select" name="nagar" required>
-                        <option selected>--nothing-selected--</option>
-                        <option>Texas</option>
-                        <option>Canada</option>
-                        <option>California</option>
-                        <option>Congo</option>
-                        <option>Los Angels</option>
-                        <option>Los Santos</option>
-                        <option>Japan</option>
-                        <option>Tokyo</option>
-                        <option>India</option>
-                        <option>China</option>
-                        <option>South Africa</option>
-                        <option>Antarctica</option>
-                    </select>
                 </div>
                 <div class="col-12">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="gridCheck" required>
                         <label class="form-check-label" for="gridCheck">
-                            I agree to all of the aforementioned terms and conditions. Any theft at the workplace or
-                            misuse of this application may result in significant legal consequences for me. If the above
+                            I agree to all of the aforementioned terms and conditions. Misuse of this application may
+                            result in significant legal consequences for me. If the above
                             information provided is wrong, I will be subject to legal action. I've checked the form at
                             least twice.
                         </label>
                     </div>
                 </div>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-danger">Register Me</button>
+                    <button type="submit" class="btn btn-primary">Register Me</button>
                 </div>
             </form>
         </div>

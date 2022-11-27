@@ -13,7 +13,8 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('assets'));
-const User = require('./models/user')
+const User = require('./models/user');
+const Client = require('./models/client');
 require('./connections/conn');
 
 const authenticate = require('./middleware/authenticate');
@@ -23,7 +24,9 @@ var salary = 4500 + 9000;
 console.log(salary);
 var genArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 var generateUsableLocalToken = `${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}`;
-console.log(generateUsableLocalToken)
+console.log(generateUsableLocalToken);
+var generateUsableforClient = `${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}`;
+console.log(generateUsableforClient);
 app.get('/', async function (req, res)
 {
     return res.status(200).render('main');
@@ -74,6 +77,50 @@ app.post('/registerWorker', async function (req, res) {
         console.log(error);
     }
 })
+
+app.post('/registerUser', async function(req, res){
+    const { name, email, phone, password, address1, conpassword, address2 } = req.body;
+    
+    try {
+        const emailthere = await Client.findOne({ email: email });
+        const phonethere = await Client.findOne({ phone: phone });
+        const address1there = await Client.findOne({ address1: address1 });
+        const nameThere = await Client.findOne({name: name});
+        if (emailthere) {
+            return res.status(422).render('errorPage', {
+                message: email
+            })
+        }
+        if (phonethere) {
+            return res.status(422).render('errorPage', {
+                message: phone
+            })
+        }
+        if (address1there) {
+            return res.status(422).render('errorPage', {
+                message: address1
+            })
+        }
+        if(nameThere){
+            return res.status(422).send(`Client with same name "<b><u>${name}</u></b>" is already registered! Choose different name, try adding middle name or modifying name.`)
+        }
+        if(password != conpassword) {
+            return res.status(422).send('Password and confirm passwords are not matching...')
+        }
+        else {
+            const user = new Client({ name, email, phone, address1, password, address2 });
+            await user.save();
+            const appendWorkerID = await Client.findOne({name: name});
+            const grabID = appendWorkerID._id;
+            const action = await Client.findOneAndUpdate({_id: grabID}, {clientID: generateUsableforClient});
+            console.log(action.clientID);
+            return res.status(200).send('done');
+        }
+    } catch (error) {
+        console.log(error);
+    }
+})
+
 app.get('/loginInit', async function (req, res)
 {
     return res.status(200).render('loginWorker');
@@ -121,6 +168,11 @@ app.get('/continue', authenticate ,async function(req, res){
 app.get('/alow', authenticate, async function(req, res){
     return res.send('asdha8sd6jh');
 })
+
+app.get('/userRegistration', async function(req, res){
+    return res.status(200).render('userRegister');
+})
+
 app.listen(port, (err) =>
 {
     if (err == true) { console.log('error occured at initialisation') } else
