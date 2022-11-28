@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">WorkerLogin</a>
+            <a class="navbar-brand" href="#">UerLogin</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -40,10 +40,10 @@
                         <a class="nav-link" href="/pushtoform">WorkerRegister</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/userLogin">UerLogin</a>
+                        <a class="nav-link active" href="/userLogin">UerLogin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/loginInit">WorkerLogin</a>
+                        <a class="nav-link" href="/loginInit">WorkerLogin</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -54,13 +54,14 @@
         </div>
     </nav>
     <div class="container my-5">
-    <h1 class="alignCenter">LogIn to continue</h1>
-    <br>
-    <h4 class="alignCenter">Use the name and password that you provided at the time of registration.</h4>
-    <p style="text-align: center;">Name must be exactly the same you entered while registration, including the capital letters too.</p>
-    <br>
-    <br>
-        <form method="post" action="/loginthisuser">
+        <h1 class="alignCenter">LogIn to continue</h1>
+        <br>
+        <h4 class="alignCenter">Use the name and password that you provided at the time of registration.</h4>
+        <p style="text-align: center;">Name must be exactly the same you entered while registration, including the
+            capital letters too.</p>
+        <br>
+        <br>
+        <form method="post" action="/loginClient">
             <div class="row mb-3">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Enter your name here: </label>
                 <div class="col-sm-10">
@@ -70,7 +71,8 @@
             <div class="row mb-3">
                 <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
-                    <input type="password" name="password" class="form-control" id="inputPassword3" autocomplete="off" required>
+                    <input type="password" name="password" class="form-control" id="inputPassword3" autocomplete="off"
+                        required>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Sign in</button>

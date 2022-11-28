@@ -50,11 +50,11 @@ userSchema.pre('save', async function(next){
 })
 
 
-userSchema.methods.generateAuthToken = async function ()
+userSchema.methods.generateClientToken = async function ()
 {
     try
     {
-        let token = jwt.sign({ _id: this._id }, process.env.SECRETKEY)
+        let token = jwt.sign({ _id: this._id }, process.env.CLIENTKEY)
         this.tokens = this.tokens.concat({ token: token });
         await this.save();
         return token;

@@ -18,14 +18,15 @@ const Client = require('./models/client');
 require('./connections/conn');
 
 const authenticate = require('./middleware/authenticate');
-
+const authclient = require('./middleware/clientauth');
 var rawAmt = 4000;
 var salary = 4500 + 9000;
 console.log(salary);
+var genArrayalapha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var genArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-var generateUsableLocalToken = `${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}`;
+var generateUsableLocalToken = `${genArrayalapha[Math.floor(Math.random() * genArrayalapha.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}`;
 console.log(generateUsableLocalToken);
-var generateUsableforClient = `${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}`;
+var generateUsableforClient = `${genArrayalapha[Math.floor(Math.random() * genArrayalapha.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}`;
 console.log(generateUsableforClient);
 app.get('/', async function (req, res)
 {
@@ -114,7 +115,7 @@ app.post('/registerUser', async function(req, res){
             const grabID = appendWorkerID._id;
             const action = await Client.findOneAndUpdate({_id: grabID}, {clientID: generateUsableforClient});
             console.log(action.clientID);
-            return res.status(200).send('done');
+            return res.status(200).redirect('userLogin');
         }
     } catch (error) {
         console.log(error);
@@ -145,7 +146,7 @@ app.post('/loginthisuser', async function (req, res) {
         if (userLogin) {
             const passwordMatch = await bcrypt.compare(password, userLogin.password);
             if (passwordMatch) {
-                // firstrender
+                // firstrender 
                 return res.render("confirm");
             } else {
                 return res.send("Invalid Details");
@@ -157,7 +158,20 @@ app.post('/loginthisuser', async function (req, res) {
         console.log(err);
     }
 });
+
+var allworkersList = [];
 app.get('/continue', authenticate ,async function(req, res){
+    const allWokers = await User.find({});
+    allWokers.forEach((e)=>{
+        for(let i = 0; i<=allWokers.length; i++){
+            if(allworkersList[i] == e.name){
+                // console.log('not appended')
+                allworkersList.pop(e.name);
+            }
+        }
+        allworkersList.push(e.name);
+    })
+    console.log(allworkersList);
     return res.status(200).render('dashboardWorker', {
         workerID: req.rootUser.workerID,
         workerName: req.rootUser.name,
@@ -172,11 +186,57 @@ app.get('/alow', authenticate, async function(req, res){
 app.get('/userRegistration', async function(req, res){
     return res.status(200).render('userRegister');
 })
+app.get('/userLogin', async function(req, res){
+    return res.status(200).render('userlogin')
+})
 
-app.listen(port, (err) =>
-{
-    if (err == true) { console.log('error occured at initialisation') } else
-    {
+app.post('/loginClient', async function(req, res){
+    
+    const { name, password } = req.body;
+    try {
+        const userLogin = await Client.findOne({ name: name });
+        if(!userLogin){
+            return res.send("Invalid Details");
+        }
+        const token = await userLogin.generateClientToken();
+        res.cookie("jwtokenclient", token, {
+            expires: new Date(Date.now() + 25892000000),
+            httpOnly: true
+        });
+        if (userLogin) {
+            const passwordMatch = await bcrypt.compare(password, userLogin.password);
+            if (passwordMatch) {
+                // firstrender 
+                return res.render("userLoggedIn");
+            } else {
+                return res.send("Invalid Details");
+            }
+        }else {
+            console.log('cant login');
+        }
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+app.get('/client', authclient, async function(req, res){
+    return res.send(req.rootUser.clientID);
+})
+
+
+
+
+app.get('/clientDashboard', authclient, async function(req, res){
+    console.log(allworkersList);    
+    return res.status(200).render('clientdashboard', {
+        appendID: req.rootUser.clientID
+    })
+})
+
+
+
+app.listen(port, (err) => {
+    if (err == true) { console.log('error occured at initialisation') } else {
         console.log(`Application on: http://localhost:${port}`);
     };
 });

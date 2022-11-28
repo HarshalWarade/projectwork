@@ -9,17 +9,17 @@
 *::selection{
     background-color: rgba(112, 114, 255, 0.155);
 }
-.navbar a{
+nav a{
     text-decoration: none;
-    font-size: 18px;
+    font-size: 20px;
     color: rgb(100, 100, 100);
     transition: 0.4s ease;
 }
-.navbar a.active{
+nav a.active{
     color: #6969ff;
     font-weight: 800;
 }
-.navbar a:hover{
+nav a:hover{
     transition: 0.4s ease;
     color: #6969ff;
     font-weight: 800;
