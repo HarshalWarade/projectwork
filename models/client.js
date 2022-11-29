@@ -31,6 +31,8 @@ const userSchema = new mongoose.Schema({
     clientID: {
         type: String
     },
+    compareList: [String],
+    hireList: [String],
     tokens: [{
         token: {
             type: String,

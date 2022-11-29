@@ -3,18 +3,15 @@
     justify-content: space-evenly;
     align-items: center;
     padding: 0 100px;
-    height: 50vh;
+    height: 40vh;
     border-bottom: 1px solid #ccc;
-    /* flex-direction: column; */
-    /* background: lightblue; */
 }
 .worker-image{
-    height: 250px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 250px;
-    /* border: 1px solid red; */
+    width: 200px;
     border-radius: 50%;
     overflow: hidden;
 }
@@ -51,20 +48,27 @@ a{
     padding: 40px;
 }
 .details-holder{
-    background: rgba(255, 255, 255, 0.8);
-    /* background-color: rgb(245, 245, 245); */
-    box-shadow: 0 0px 30px rgba(0, 0, 0, 0.03);
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    opacity: 0.5;
+    cursor: default;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
     padding: 0 10px;
-    margin: 20px 0;
+    border-radius: 4px;
+    margin: 30px 0;
+    transition: 0.4s ease;
     align-items: center;
     height: 8vh;
 }
+.details-holder:hover{
+    transform: translateX(15px);
+    border: none;
+    background: #fff;
+    opacity: 1;
+    box-shadow: 0 7px 30px rgba(0, 0, 0, 0.12);
+    color: white;
+}
 .choice{
-    /* border: 2px solid blue; */
     display: flex;
     gap: 1rem;
     justify-content: space-between;
@@ -76,6 +80,15 @@ a{
     border-radius: 4px;
     color: white;
 }
+.viewOffer{
+    background: rgb(82, 97, 255);
+    padding: 6px 20px;
+    border-radius: 4px;
+    color: white;
+}
 .accept{
     background: rgb(106, 224, 110);
+}
+.offerLinks{
+    color: black;
 }

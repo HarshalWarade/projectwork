@@ -10,25 +10,37 @@
     </title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/dashboard.css">
+    <style>
+        .flexEm{
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
     <div class="header">
         <div class="worker-image">
-            <img src="https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg?w=2000"
+            <img src="https://www.mazaindia.com/wallpapers/tamil-actress-samantha-hd-wallpapers-in-saree-samantha-ruth-prabhu-in-saree-stills15.jpg"
                 alt="loading...">
         </div>
         <div class="worker-contents">
-            <p class="worker-details-field"><span class="boldit">workerID</span>: <%=workerID%>
-            </p>
-            <p class="worker-details-field"><span class="boldit">Name</span>: <%=workerName%>
-            </p>
+            <div class="flexEm">
+                <p class="worker-details-field"><span class="boldit">workerID</span>: <%=workerID%>
+                </p>
+                <p class="worker-details-field"><span class="boldit">Name</span>: <%=workerName%>
+                </p>
+            </div>
             <p class="worker-details-field"><span class="boldit">Email</span>: <%=workerEmail%>
             </p>
             <p class="worker-details-field"><span class="boldit">Joined Since: </span>
                 <%=workerJoined%>
             </p>
+            <div class="flexEm">
+                <p class="worker-details-field"><span class="boldit">Verification Status: </span><b id="statusWorker"><%=currentStatus%></b></p>
             <div class="worker-details-field"><span class="boldit">Salary/Month: </span>Rs. 9,000</div>
+            </div>
         </div>
     </div>
 
@@ -38,25 +50,35 @@
             <ul>
                 <li class="details-holder">
                     <div class="addressClient">
-                        <a href="">Address of client1</a>
+                        <a href="/addressofClient" class="offerLinks">Address of client1</a>
                     </div>
                     <div class="choice">
-                        <a href="" class="offer accept">Accept</a>
-                        <a href="" class="offer reject">Reject</a>
+                        <a href="/offerAccept" class="offer accept">Accept</a>
+                        <a href="/offerViewOffer" class="offer viewOffer">View Offer</a>
+                        <a href="/offerReject" class="offer reject">Reject</a>
                     </div>
                 </li>
                 <li class="details-holder">
                     <div class="addressClient">
-                        <a href="">Address of client1</a>
+                        <a href="/addressofClient" class="offerLinks">Address of client1</a>
                     </div>
                     <div class="choice">
-                        <a href="" class="offer accept">Accept</a>
-                        <a href="" class="offer reject">Reject</a>
+                        <a href="/offerAccept" class="offer accept">Accept</a>
+                        <a href="/offerViewOffer" class="offer viewOffer">View Offer</a>
+                        <a href="/offerReject" class="offer reject">Reject</a>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
+    <script>
+        let statusWorker = document.getElementById('statusWorker');
+        if(statusWorker.innerHTML == "Not verified yet!"){
+            statusWorker.style.color = 'red';
+        }else{
+            statusWorker.style.color = 'rgb(106, 224, 110)';
+        }
+    </script>
 </body>
 
 </html>

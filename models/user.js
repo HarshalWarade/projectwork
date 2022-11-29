@@ -38,6 +38,9 @@ const userSchema = new mongoose.Schema({
     salary: {
         type: Number
     },
+    approvedStatus: {
+        type: String
+    },
     tokens: [{
         token: {
             type: String,

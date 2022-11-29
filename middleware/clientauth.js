@@ -10,15 +10,15 @@ const Authenticate = async (req, res, next) =>
     {
         const token = req.cookies.jwtokenclient;
         const verifyToken = jwt.verify(token, process.env.CLIENTKEY);
-        const rootUser = await Client.findOne({ _id: verifyToken._id, "tokens.token": token });
-        if (!rootUser)
+        const rootClient = await Client.findOne({ _id: verifyToken._id, "tokens.token": token });
+        if (!rootClient)
         {
             throw new Error('User not found');
         }
         req.token = token;
-        // rootUser will get all the document of the specific user.
-        req.rootUser = rootUser;
-        req.userID = rootUser._id;
+        // rootClient will get all the document of the specific user.
+        req.rootClient = rootClient;
+        req.userID = rootClient._id;
         next();
     } catch (err)
     {
