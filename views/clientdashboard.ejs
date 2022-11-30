@@ -28,49 +28,156 @@
             <button type="submit">Search</button>
         </form>
         <div class="mainOptions">
-            <a href=""><i class="fa-solid fa-gear"></i></a>
-            <a href=""><i class="fa-solid fa-power-off"></i></a>
-            <a href=""><i class="fa-solid fa-list-check"></i></a>
+            <a href="#"><i class="fa-solid fa-gear"></i></a>
+            <a href="#"><i class="fa-solid fa-power-off"></i></a>
+            <a href="#" class="mainHolderArranger" id="openCompares"><i class="fa-solid fa-list-check"></i>
+                <p class="arrangeProperly">
+                    <%=lengthCompare%>
+                </p>
+            </a>
+            <a href="#" class="clientHireList" id="openHireList" style="color: white; font-size: 16px;">HireList
+                <p class="arrangeProperly">
+                    <%=lengthHire%>
+                </p>
+            </a>
         </div>
     </div>
 
-
-    <div class="container my-5" id="wCards">
-        
-        <% for(let i = 0; i<length; i++){ %>
-        <div class="card mb-3" style="max-width: 540px; border: none;">
-            <div class="row g-0" style="padding: 10px 20px;">
-                <div class="col-md-4" style="display: flex; justify-content: center; align-items: center;">
-                    <img src="<%=imagearray[i]%>"
-                        class="img-fluid rounded-start" alt="...">
+    <div class="patanahi" id="openCompare">
+        <h3>Compare's list</h3>
+        <div class="allComparisons">
+            <% for(let i=0; i<lengthCompare; i++){ %>
+                <div>
+                    <a href="" class="seps">
+                        <%=list2[i]%>
+                    </a>
+                    <a href="/popWorker/?v87sdf78sd8fcfshdfgs87d87c=<%=list2[i]%>" class="remo">Remove</a>
                 </div>
-                <div class="col-md-8 border">
-                    <div class="card-body">
-                        <h3 class="card-title"><%=result[i].name%></h3>
-                        <h5 class="card-title">WorkerID: <%=result[i].workerID%></h5>
-                        <p class="card-text">Salary asked / Month: Rs. <%=result[i].salary%></p>
-                        <b><p class="card-text" class="catchHere">Verification Status: <%=result[i].approvedStatus%></p></b>
-                        <br>
-                        <div class="controllers">
-                            <a href="" class="btn btn-danger">See details</a>
-                            <a href="/getWorker/?aJKASDH7834OI97234ADMBNXCVBA=<%=result[i].workerID%>" class="btn btn-success">Add to list</a>
-                            <a href="" class="btn btn-primary">Hire</a>
+                <%}%>
+        </div>
+        <div class="closeBtn">
+            <a href="#" id="closeCompare">Close</a>
+        </div>
+    </div>
+    <div class="patanaahi" id="openCompareh">
+        <h3>Hire's list</h3>
+        <div class="allComparisons">
+            <% for(let i=0; i<lengthHire; i++){ %>
+                <div>
+                    <a href="" class="seps">
+                        <%=list2[i]%>
+                    </a>
+                    <a href="/popHiredWorker/?df67SDs7d6asdhgGDSJs587w34gywe=<%=list2[i]%>" class="remo">Remove</a>
+                </div>
+                <%}%>
+        </div>
+        <div class="closeBtn">
+            <a href="#" id="closeCompareh">Close</a>
+        </div>
+    </div>
+
+    <!-- <div class="container my-5" id="wCards"> -->
+
+    <div class="mainHolder" id="grabThis">
+        <% for(let i=0; i<length; i++){ %>
+            <!-- <div class="card mb-3" style="max-width: 540px; border: none;">
+                <div class="row g-0" style="padding: 10px 20px;">
+                    <div class="col-md-4" style="display: flex; justify-content: center; align-items: center;">
+                        <img src="<%=imagearray[i]%>" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8 border">
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                <%=result[i].name%>
+                            </h3>
+                            <h5 class="card-title">WorkerID: <%=result[i].workerID%>
+                            </h5>
+                            <p class="card-text">Salary asked / Month: Rs. <%=result[i].salary%>
+                            </p>
+                            <b>
+                                <p class="card-text" class="catchHere">Verification Status:
+                                    <%=result[i].approvedStatus%>
+                                </p>
+                            </b>
+                            <br>
+                            <div class="controllers">
+                                <a href="" class="btn btn-danger">See details</a>
+                                <a href="/getWorker/?cb5ee0a8fc8dd21497f0c2d0ebe1238=<%=result[i].workerID%>"
+                                    class="btn btn-success">Add to list</a>
+                                <a href="" class="btn btn-primary">Hire</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div> -->
+
+
+            <div class="hcard">
+                <div class="imageSection">
+                    <img src="<%=imagearray[i]%>" alt="loading...">
+                </div>
+                <div class="nameSection commonDivIKnow">
+                    <p><b>Name: </b>
+                        <%=result[i].name%>
+                    </p>
+                </div>
+                <div class="workerID commonDivIKnow">
+                    <p><b>WorkerID: </b>
+                        <%=result[i].workerID%>
+                    </p>
+                </div>
+                <div class="salarySection commonDivIKnow">
+                    <p><b>Salary/Month: </b>Rs. 13,500</p>
+                </div>
+                <div class="verificationStatus commonDivIKnow">
+                    <p><b>Verification Status: </b>
+                        <%=result[i].approvedStatus%>
+                    </p>
+                </div>
+                <div class="controllers commonDivIKnow">
+                    <a href="">See details</a>
+                    <a href="/getWorker/?cb5ee0a8fc8dd21497f0c2d0ebe1238=<%=result[i].workerID%>">Add to list</a>
+                    <a href="/hireWorker/?kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL=<%=result[i].workerID%>">Hire</a>
+                </div>
             </div>
-        </div>
-        <% } %>
+            <% } %>
     </div>
+    <!-- </div> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous">
-    </script>
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+        </script>
     <script>
-        function hideme(e){
-            e.style.display = 'none';
-        }
-    </script>
+        let grabThis = document.getElementById('grabThis');
+        let openCompares = document.getElementById('openCompares');
+        let openCompare = document.getElementById('openCompare');
+        let openCompareh = document.getElementById('openCompareh');
+        let closeCompare = document.getElementById('closeCompare');
+        let closeCompareh = document.getElementById('closeCompareh');
+        let openHireList = document.getElementById('openHireList');
+        openCompare.style.display = 'none';
+        openCompareh.style.display = 'none';
+        openCompares.addEventListener('click', function ()
+        {
+            openCompare.style.display = '';
+            grabThis.style.transition = '0.4s ease'
+            grabThis.style.filter = 'blur(20px)'
+        })
+        closeCompare.addEventListener('click', function ()
+        {
+            openCompare.style.display = 'none';
+            grabThis.style.filter = 'blur(0px)'
+        });
+        openHireList.addEventListener('click', ()=>{
+            openCompareh.style.display = '';
+            grabThis.style.transition = '0.4s ease'
+            grabThis.style.filter = 'blur(20px)'
+        })
+        closeCompareh.addEventListener('click', function ()
+        {
+            openCompareh.style.display = 'none';
+            grabThis.style.filter = 'blur(0px)'
+        });
+        </script>
 </body>
 
 </html>

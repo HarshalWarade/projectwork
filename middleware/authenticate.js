@@ -18,7 +18,7 @@ const Authenticate = async (req, res, next) => {
         req.userID = rootUser._id;
         next();
     } catch (err) {
-            res.status(401).render(`Invalid or illegal entry. Token is not valid. LogIn again to continue. ${generateUsableLocalToken}`);
+            res.status(401).send(`Invalid or illegal entry. Token is not valid. LogIn again to continue. ${generateUsableLocalToken}`);
     }
 }
 

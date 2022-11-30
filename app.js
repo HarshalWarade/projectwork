@@ -230,63 +230,46 @@ app.get('/client', authclient, async function(req, res) {
 });
 app.get('/clientDashboard', authenticate , authclient, async function(req, res){
     const allWorkers = await User.find();
-    // let thisWorkers = allWorkers;
-    // for(let i = 0; i<allWorkers.length; i++){
-    //     console.log(thisWorkers[i].name)
-    // }
     var allUsersList = [];
         const getAll = await User.find({});
         const step = getAll.length;
-        // const totalPosts = await req.rootUser.posts;
-        getAll.forEach((Element) =>
-        {
+        getAll.forEach((Element) => {
             allUsersList.push(Element);
         })
-        // console.log(totalPosts.length);
-
-        // Never delete the below three lines.. though they are comments.. but they saved my life...
-
-        // const returnme = await req.rootUser.posts[0];
-        // const abc = (returnme)
-        // console.log(abc.postTitle);
-
         for (let i = 0; i < getAll.length; i++)
         {
             var getUserPosts = await req.rootUser.name[i]
-            // console.log(`${getUserPosts.postTitle} -- ${getUserPosts.postBody}`);
-            // const firstPost = await req.rootUser.posts[0];
-            // console.log(firstPost.postTitle)
-            // console.log(thirdUser.postTitle)
         }
-        // const userposts = await req.rootUser.name;
-        // const actual = userposts.length;
-        var n = [];
-        var m = [];
-        var pid = [];
-        var names = ["chomu", "zhandu", "ajsd"];
+        var n = [];var m = [];var pid = [];var names = ["chomu", "zhandu", "ajsd"];
         var func = ["first body", "second body", "third body"];
-        var nUpdated = getAll.forEach((e) =>
-        {
+        var nUpdated = getAll.forEach((e) => {
             n.push(e.postTitle);
         })
-        var mUpdated = getAll.forEach((e) =>
-        {
+        var mUpdated = getAll.forEach((e) => {
             m.push(e.postBody);
         })
-        var pidUpdated = getAll.forEach((e)=>{
+        var pidUpdated = getAll.forEach((e)=> {
             pid.push(e._id);
         })
-        var allUpdated = n.forEach((num1, index) =>
-        {
+        var allUpdated = n.forEach((num1, index) => {
             const num2 = m[index];
         });
+        var arrayOfCompares = [];
+        const clientListofCompare = await req.rootClient.compareList;
+        const clientListofHire = await req.rootClient.hireList;
+        const lengthofCompareList = (JSON.parse(`${clientListofCompare.length}`));
+        const lengthofHireList = (JSON.parse(`${clientListofHire.length}`));
     return res.status(200).render('clientDashboard', {
         appendID: req.rootClient.clientID,
         result: allWorkers,
+        list: clientListofCompare,
+        list2: clientListofHire,
         n:n,
         m:m,
         length: step,
-        imagearray: ["https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?cs=srgb&dl=pexels-eberhard-grossgasteiger-1366919.jpg&fm=jpg","https://i.pinimg.com/736x/8c/b5/ee/8cb5ee0a8fc8dd21497f0c2d0ebe1238.jpg","https://cdn.statusqueen.com/mobilewallpaper/thumbnail/mobile_wallpaper257-744.jpg","https://wallpapers.com/images/high/code-vein-game-free-pure-4k-ultra-hd-mobile-wallpaper-uqg4qozrnlbblg3p.jpg"]
+        imagearray: ["https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?cs=srgb&dl=pexels-eberhard-grossgasteiger-1366919.jpg&fm=jpg","https://i.pinimg.com/736x/8c/b5/ee/8cb5ee0a8fc8dd21497f0c2d0ebe1238.jpg","https://cdn.statusqueen.com/mobilewallpaper/thumbnail/mobile_wallpaper257-744.jpg","https://wallpapers.com/images/high/code-vein-game-free-pure-4k-ultra-hd-mobile-wallpaper-uqg4qozrnlbblg3p.jpg"],
+        lengthCompare: lengthofCompareList,
+        lengthHire: lengthofHireList
     })
 });
 
@@ -299,14 +282,36 @@ app.get('/revertueoazx84', authenticate, async function(req, res) {
     await User.findOneAndUpdate({name: req.rootUser.name}, {approvedStatus: "Not verified yet!"});
     return res.status(200).redirect('/continue')
 });
-app.get('/getWorker/', authclient, authclient, async function(req, res){
-    const queryParam = req.query.aJKASDH7834OI97234ADMBNXCVBA;
-    // await Client.findOneAndUpdate({clientID: req.rootClient.clientID}, {$push: {compareList: }});
-    const findWorker = await User.findOne({workerID: queryParam});
-    // return res.send(findWorker.name);
-    await Client.findOneAndUpdate({clientID: req.rootClient.clientID}, {$push: {compareList: findWorker.name}});
-    return res.status.redirect('clientDashboard');
+
+app.get('/popWorker/', authenticate, authclient, async function(req, res){
+    // const clientListofCompare = await req.rootClient.compareList;
+    const consider = req.query.v87sdf78sd8fcfshdfgs87d87c;
+    await Client.findOneAndUpdate({name: req.rootClient.name}, {$pull: {compareList: consider}});
+    return res.redirect('back')
 })
+
+app.get('/popHiredWorker/', authenticate, authclient, async function(req, res){
+    const checkthis = req.query.df67SDs7d6asdhgGDSJs587w34gywe;
+    await Client.findOneAndUpdate({name: req.rootClient.name}, {$pull: {hireList: checkthis}});
+    return res.redirect('back')
+})
+
+app.get('/getWorker/', authclient, authclient, async function(req, res){
+    const queryParam = req.query.cb5ee0a8fc8dd21497f0c2d0ebe1238;
+    const findWorker = await User.findOne({workerID: queryParam});
+    await Client.findOneAndUpdate({clientID: req.rootClient.clientID}, {$push: {compareList: findWorker.name}});
+
+    const clientListofCompare = await req.rootClient.compareList;
+    const lengthofCompareList = (JSON.parse(`${clientListofCompare.length}`) + 1);
+    return res.status(200).redirect('back');
+});
+app.get('/hireWorker/', authenticate, authclient, async function(req, res){
+    const considerthis = req.query.kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL;
+    const findWorkerthis = await User.findOne({workerID: considerthis});
+    await Client.findOneAndUpdate({name: req.rootClient.name}, {$push: {hireList: findWorkerthis.name}});
+    return res.status(200).redirect('back');
+})
+
 app.listen(port, (err) => {
     if (err == true) { console.log('error occured at initialisation') } else {
         console.log(`Application on: http://localhost:${port}`);
