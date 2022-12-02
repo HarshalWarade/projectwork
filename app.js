@@ -20,8 +20,6 @@ require('./connections/conn');
 const authenticate = require('./middleware/authenticate');
 const authclient = require('./middleware/clientauth');
 var rawAmt = 4000;
-var salary = 4500 + 9000;
-console.log(salary);
 var genArrayalapha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var genArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 var generateUsableLocalToken = `${genArrayalapha[Math.floor(Math.random() * genArrayalapha.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}${genArray[Math.floor(Math.random() * genArray.length)]}`;
@@ -67,7 +65,7 @@ app.post('/registerWorker', async function (req, res) {
             return res.status(422).send('Password and confirm passwords are not matching...')
         }
         else {
-            const user = new User({ name, email, phone, address1, password, conpassword , address2, workerID ,nagar, salary, approvedStatus, jobType });
+            const user = new User({ name, email, phone, address1, password, conpassword , address2, workerID ,nagar, approvedStatus, jobType });
             await user.save();
             const appendWorkerID = await User.findOne({name: name});
             const grabID = appendWorkerID._id;
@@ -161,6 +159,7 @@ app.post('/loginthisuser', async function (req, res) {
 });
 app.get('/continue', authenticate ,async function(req, res){
     const thisWorker = await User.findOne({name: req.rootUser.name});
+    const clientsAvailable = thisWorker.opprtunities.length;
     return res.status(200).render('dashboardWorker', {
         workerID: req.rootUser.workerID,
         workerName: req.rootUser.name,
@@ -168,7 +167,8 @@ app.get('/continue', authenticate ,async function(req, res){
         workerJoined: req.rootUser.createdAt,
         currentStatus: req.rootUser.approvedStatus,
         workerAdded: thisWorker,
-        workType: req.rootUser.jobType
+        workType: req.rootUser.jobType,
+        clientsWaiting: clientsAvailable
     })
 });
 app.get('/alow', authenticate, async function(req, res) {

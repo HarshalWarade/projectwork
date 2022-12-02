@@ -39,9 +39,6 @@ const userSchema = new mongoose.Schema({
     workerID: {
         type: String
     },
-    salary: {
-        type: Number
-    },
     approvedStatus: {
         type: String
     },

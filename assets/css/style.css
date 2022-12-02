@@ -10,10 +10,12 @@
     border: none;
     outline: none;
 }
-*::-webkit-scrollbar{
+
+*::-webkit-scrollbar {
     width: 0;
     display: none;
 }
+
 *::selection {
     background-color: rgba(112, 114, 255, 0.155);
 }
@@ -189,6 +191,31 @@ input[type="number"] {
     text-align: center;
 }
 
+
+.timeReleated {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.arrangeTime{
+    border:1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.setTime{
+    padding: 7px 20px;
+    border-radius: 4px;
+    background: rgb(0, 0, 0);
+    color: white;
+}
 /* End of workerlogin */
 
 
@@ -205,6 +232,7 @@ input[type="number"] {
         padding: 0;
         padding: 60px 0;
     }
+
     .headingInner {
         background-position: center;
         background-size: cover;
@@ -212,19 +240,22 @@ input[type="number"] {
         object-fit: cover;
         font-size: 50px;
     }
+
     .content {
         width: 85%;
     }
+
     p {
         line-height: 30px;
         text-align: justify;
     }
-    
+
     p.commonText {
-        
+
         padding: 7px 0;
         font-size: 18px;
     }
+
     .addBorder {
         border-bottom: 1px solid #999;
         color: #777;
@@ -232,6 +263,7 @@ input[type="number"] {
         font-size: 18px;
         padding: 20px 0;
     }
+
     .image-container {
         width: 70%;
         height: 100%;
@@ -239,6 +271,7 @@ input[type="number"] {
         justify-content: center;
         align-items: center;
     }
+
     .display {
         height: auto;
         display: flex;
@@ -248,6 +281,7 @@ input[type="number"] {
         flex-direction: column;
         padding: 20px;
     }
+
     .display .card:nth-child(2) {
         transform: translateY(0px);
         box-shadow: none;

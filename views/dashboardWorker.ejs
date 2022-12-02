@@ -284,6 +284,68 @@
         .controllersWorker a {
             color: #0E72ED;
         }
+
+        /* Dropdown Button */
+        .dropbtn {
+            background-color: #F2F2F5;
+            color: #9292A1;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Dropdown button on hover & focus */
+        .dropbtn:hover,
+        .dropbtn:focus {
+            background-color: #F2F2F5;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #F2F2F5;
+            width: 14vw;
+            font-weight: 600;
+            font-size: 13px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            transition: 0.4s ease;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #0E72ED;
+            color: white;
+        }
+
+        /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+        .show {
+            display: block;
+        }
+
+        .round-it{
+            background: red;
+            color: white;
+            padding: 0px 6px;
+            border-radius: 50%;
+        }
     </style>
 </head>
 
@@ -300,6 +362,19 @@
             <a href=""><i class="fa-solid fa-phone colorIcon"></i></a>
             <a href=""><i class="fa-solid fa-envelope colorIcon"></i></a>
             <a href=""><i class="fa-solid fa-question colorIcon"></i></a>
+            <a href=""><i class="fa-solid fa-rotate-right colorIcon"></i></a>
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Settings</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#">Change Name</a>
+                    <a href="#">Change JobType</a>
+                    <a href="#">Change Password</a>
+                    <a href="#">Change Timings</a>
+                    <a href="#">Change Email</a>
+                    <a href="#">Change Address <span class="round-it">!</span></a>
+                    <a href="#">Log Out</a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="allHolder">
@@ -329,7 +404,7 @@
                     <p>4:00pm to 8:00pm</p>
                 </div>
                 <div class="arrangeRegulator"><b>Verification Status: </b>
-                    <p>
+                    <p id="statusWorker">
                         <%=currentStatus%>
                     </p>
                 </div>
@@ -342,6 +417,7 @@
         </div>
         <div class="portionLists">
             <div class="parentofStrips">
+                <h2>Client(s) waiting for you: Currently <%=clientsWaiting%> waiting in queue.</h2>
                 <% for(let i=0; i<workerAdded.opprtunities.length; i++) { %>
                     <div class="strip">
                         <div class="clientName">
@@ -353,10 +429,27 @@
                             <a href=""><i class="fa-regular fa-rectangle-list"></i></a>
                         </div>
                     </div>
-                <% } %>
+                    <% } %>
             </div>
         </div>
     </div>
+    <script>
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>
