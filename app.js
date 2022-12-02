@@ -29,7 +29,7 @@ var generateUsableforClient = `${genArrayalapha[Math.floor(Math.random() * genAr
 
 var compareList = [];
 var hireList = [];
-
+var opprtunities = [];
 var approvedStatus = "Not verified yet!";
 app.get('/', async function (req, res)
 {
@@ -42,7 +42,7 @@ app.get('/pushtoform', async function (req, res)
 });
 
 app.post('/registerWorker', async function (req, res) {
-    const { name, email, address1, password, conpassword, phone, address2, nagar } = req.body;
+    const { name, email, address1, password, conpassword, phone, address2, nagar, jobType } = req.body;
     var workerID = 'will get soon!';
     try {
         const emailthere = await User.findOne({ email: email });
@@ -67,7 +67,7 @@ app.post('/registerWorker', async function (req, res) {
             return res.status(422).send('Password and confirm passwords are not matching...')
         }
         else {
-            const user = new User({ name, email, phone, address1, password, address2, workerID ,nagar, salary, approvedStatus });
+            const user = new User({ name, email, phone, address1, password, conpassword , address2, workerID ,nagar, salary, approvedStatus, jobType });
             await user.save();
             const appendWorkerID = await User.findOne({name: name});
             const grabID = appendWorkerID._id;
@@ -112,7 +112,7 @@ app.post('/registerUser', async function(req, res){
             return res.status(422).send('Password and confirm passwords are not matching...')
         }
         else {
-            const user = new Client({ name, email, phone, address1, password, address2, compareList, hireList });
+            const user = new Client({ name, email, phone, address1, password, conpassword , address2, compareList, hireList });
             await user.save();
             const appendWorkerID = await Client.findOne({name: name});
             const grabID = appendWorkerID._id;
@@ -148,7 +148,6 @@ app.post('/loginthisuser', async function (req, res) {
         if (userLogin) {
             const passwordMatch = await bcrypt.compare(password, userLogin.password);
             if (passwordMatch) {
-                // firstrender 
                 return res.render("confirm");
             } else {
                 return res.send("Invalid Details");
@@ -160,30 +159,16 @@ app.post('/loginthisuser', async function (req, res) {
         console.log(err);
     }
 });
-
-// var allworkersList = [];
 app.get('/continue', authenticate ,async function(req, res){
-    const allWokers = await User.find({});
-    for(let i = 0; i<allWokers.length;i++) {
-        console.log(allWokers[i].name);
-    }
-
-    // allWokers.forEach((e)=>{
-    //     for(let i = 0; i<=allWokers.length; i++){
-    //         if(allworkersList[i] == e.name){
-    //             allworkersList.pop(e.name);
-    //         }
-    //     }
-    //     allworkersList.push(e.name);
-    // })
-    // console.log(allworkersList);
-
+    const thisWorker = await User.findOne({name: req.rootUser.name});
     return res.status(200).render('dashboardWorker', {
         workerID: req.rootUser.workerID,
         workerName: req.rootUser.name,
         workerEmail: req.rootUser.email,
         workerJoined: req.rootUser.createdAt,
-        currentStatus: req.rootUser.approvedStatus
+        currentStatus: req.rootUser.approvedStatus,
+        workerAdded: thisWorker,
+        workType: req.rootUser.jobType
     })
 });
 app.get('/alow', authenticate, async function(req, res) {
@@ -293,6 +278,7 @@ app.get('/popWorker/', authenticate, authclient, async function(req, res){
 app.get('/popHiredWorker/', authenticate, authclient, async function(req, res){
     const checkthis = req.query.df67SDs7d6asdhgGDSJs587w34gywe;
     await Client.findOneAndUpdate({name: req.rootClient.name}, {$pull: {hireList: checkthis}});
+    await User.findOneAndUpdate({name: checkthis}, {$pull: {opprtunities: req.rootClient.name}});
     return res.redirect('back')
 })
 
@@ -308,6 +294,7 @@ app.get('/getWorker/', authclient, authclient, async function(req, res){
 app.get('/hireWorker/', authenticate, authclient, async function(req, res){
     const considerthis = req.query.kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL;
     const findWorkerthis = await User.findOne({workerID: considerthis});
+    await User.findOneAndUpdate({workerID: considerthis}, {$push: {opprtunities: req.rootClient.name}});
     await Client.findOneAndUpdate({name: req.rootClient.name}, {$push: {hireList: findWorkerthis.name}});
     return res.status(200).redirect('back');
 })

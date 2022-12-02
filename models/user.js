@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
     conpassword: {
         type: String
     },
+    jobType: {
+        type: String,
+        required: true
+    },
     address2: {
         type: String
     },
@@ -41,6 +45,7 @@ const userSchema = new mongoose.Schema({
     approvedStatus: {
         type: String
     },
+    opprtunities: [String],
     tokens: [{
         token: {
             type: String,

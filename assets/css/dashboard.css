@@ -27,10 +27,8 @@
     flex-direction: column;
     gap: 1.4rem;
     justify-content: center;
-    /* align-items: center; */
 }
 .worker-details-field{
-    /* font-weight: 800; */
     font-size: 20px;
 }
 .boldit{
@@ -48,24 +46,21 @@ a{
     padding: 40px;
 }
 .details-holder{
-    opacity: 0.5;
     cursor: default;
     display: flex;
     justify-content: space-between;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
-    padding: 0 10px;
+    padding: 0 20px;
     border-radius: 4px;
     margin: 30px 0;
     transition: 0.4s ease;
+    background: #fafafa;
     align-items: center;
     height: 8vh;
 }
 .details-holder:hover{
-    transform: translateX(15px);
     border: none;
     background: #fff;
     opacity: 1;
-    box-shadow: 0 7px 30px rgba(0, 0, 0, 0.12);
     color: white;
 }
 .choice{
@@ -75,20 +70,41 @@ a{
     align-items: center;
 }
 .offer{
-    background: rgb(255, 82, 82);
+    border: 1px solid rgb(255, 82, 82);
+    color: rgb(255, 82, 82);
     padding: 6px 20px;
+    transition: 0.4s ease;
     border-radius: 4px;
+}
+.offer:hover{
+    background: rgb(255, 82, 82);
     color: white;
 }
 .viewOffer{
-    background: rgb(82, 97, 255);
     padding: 6px 20px;
     border-radius: 4px;
+    transition: 0.4s ease;
+    color: white;
+    color: rgb(82, 97, 255);
+    border: 1px solid rgb(82, 97, 255);
+}
+.viewOffer:hover{
+    background: rgb(82, 97, 255);
     color: white;
 }
 .accept{
+    color: rgb(106, 224, 110);
+    border: 1px solid rgb(106, 224, 110);
+    transition: 0.4s ease;
+}
+.accept:hover{
     background: rgb(106, 224, 110);
+    color: white;
 }
 .offerLinks{
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    width: auto;
     color: black;
 }

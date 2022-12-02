@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -22,7 +22,7 @@
 <body>
     <div class="header">
         <div class="worker-image">
-            <img src="https://www.mazaindia.com/wallpapers/tamil-actress-samantha-hd-wallpapers-in-saree-samantha-ruth-prabhu-in-saree-stills15.jpg"
+            <img src="https://wallpapercave.com/wp/wp7514091.png"
                 alt="loading...">
         </div>
         <div class="worker-contents">
@@ -48,9 +48,11 @@
         <h2>Joining offers: </h2>
         <div class="offers-list">
             <ul>
+                <% for(let i = 0; i<workerAdded.opprtunities.length; i++) { %>
+                
                 <li class="details-holder">
                     <div class="addressClient">
-                        <a href="/addressofClient" class="offerLinks">Address of client1</a>
+                        <a href="/addressofClient" class="offerLinks"><p><%=i+1%>]</p><p><%=workerAdded.opprtunities[i]%></p></a>
                     </div>
                     <div class="choice">
                         <a href="/offerAccept" class="offer accept">Accept</a>
@@ -58,16 +60,8 @@
                         <a href="/offerReject" class="offer reject">Reject</a>
                     </div>
                 </li>
-                <li class="details-holder">
-                    <div class="addressClient">
-                        <a href="/addressofClient" class="offerLinks">Address of client1</a>
-                    </div>
-                    <div class="choice">
-                        <a href="/offerAccept" class="offer accept">Accept</a>
-                        <a href="/offerViewOffer" class="offer viewOffer">View Offer</a>
-                        <a href="/offerReject" class="offer reject">Reject</a>
-                    </div>
-                </li>
+
+                <% } %>
             </ul>
         </div>
     </div>
@@ -79,6 +73,290 @@
             statusWorker.style.color = 'rgb(106, 224, 110)';
         }
     </script>
+</body>
+
+</html> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%=workerName%> - <%=workerID%>
+    </title>
+    <script src="https://kit.fontawesome.com/80a75ed5af.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+        }
+
+        *:root {
+            --nav-height: 10vh;
+        }
+
+        .allHolder {
+            height: calc(100vh - var(--nav-height));
+            display: grid;
+            grid-template-columns: 1fr 3.5fr;
+        }
+
+        .sidebar {
+            border-right: 1px solid #d9d9d9;
+            padding: 10px;
+            height: 100%;
+        }
+
+        .navHolder {
+            display: flex;
+            background: #F2F2F5;
+            justify-content: space-evenly;
+            align-items: center;
+            height: var(--nav-height);
+        }
+
+        .searchBox {
+            width: 50vw;
+            height: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .formSearchworkerSide {
+            height: 100%;
+            width: 100%;
+        }
+
+        .formSearchworkerSide input {
+            width: 85%;
+            height: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 0 0 0 13px;
+            font-size: 15px;
+        }
+
+        .formSearchworkerSide button {
+            cursor: pointer;
+            padding: 7px 24px;
+            background: #555;
+            color: white;
+            transition: 0.4s ease;
+            border-radius: 4px;
+        }
+
+        .formSearchworkerSide button:hover {
+            background: #0E72ED;
+            color: white;
+        }
+
+        .imageHeader {
+            height: 23vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .imgDiv {
+            height: 20vh;
+            width: 20vh;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .imgDiv img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .infoDiv {
+            height: auto;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .arrangeRegulator {
+            padding: 10px 20px;
+            display: flex;
+            gap: 0.3rem;
+            border-bottom: 1px solid #ccc;
+            align-items: center;
+        }
+
+        .arrangeRegulator:nth-child(5) {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .controlssupports {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .controlssupports a {
+            color: #444;
+            font-weight: 700;
+        }
+
+        .blue {
+            color: blue;
+            text-decoration: underline;
+        }
+
+        .moreDiv {
+
+            padding: 30px 20px;
+            text-align: justify;
+        }
+
+        .colorIcon {
+            transition: 0.4s ease;
+            color: #9292A1;
+            font-size: 20px;
+        }
+
+        .colorIcon:hover {
+            color: #0E72ED;
+        }
+
+        .portionLists {
+            padding: 30px;
+            height: calc(100vh - var(--nav-height));
+            overflow-y: auto;
+        }
+
+        .parentofStrips {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .strip {
+            width: 100%;
+            border: 1px solid #DEDEE3;
+            height: 10vh;
+            border-radius: 7px;
+            transition: 0.4s ease;
+            display: flex;
+            justify-content: space-between;
+            /* padding: 0 20px; */
+            padding: 10px 20px;
+            align-items: center;
+        }
+
+        .strip:hover {
+            background: #e3f0ff;
+            color: #000;
+            border: 1px solid #0E72ED;
+        }
+
+        .controllersWorker {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .controllersWorker a {
+            color: #0E72ED;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navHolder">
+        <div class="searchBox">
+            <form action="/searchWorkerside" class="formSearchworkerSide" method="get">
+                <input type="search" placeholder="Type here to search..." autocomplete="off" name="searchfromworker"
+                    required>
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+        <div class="controlssupports">
+            <a href=""><i class="fa-solid fa-phone colorIcon"></i></a>
+            <a href=""><i class="fa-solid fa-envelope colorIcon"></i></a>
+            <a href=""><i class="fa-solid fa-question colorIcon"></i></a>
+        </div>
+    </div>
+    <div class="allHolder">
+        <div class="sidebar">
+            <div class="imageHeader">
+                <div class="imgDiv">
+                    <img src="https://wallpapercave.com/wp/wp7514091.png" alt="">
+                </div>
+            </div>
+            <div class="infoDiv">
+                <div class="arrangeRegulator"><b>Name: </b>
+                    <p>
+                        <%=workerName%>
+                    </p>
+                </div>
+                <div class="arrangeRegulator"><b>WorkerID: </b>
+                    <p>
+                        <%=workerID%>
+                    </p>
+                </div>
+                <div class="arrangeRegulator"><b>Work Type: </b>
+                    <p>
+                        <%=workType%>
+                    </p>
+                </div>
+                <div class="arrangeRegulator"><b>Time of work: </b>
+                    <p>4:00pm to 8:00pm</p>
+                </div>
+                <div class="arrangeRegulator"><b>Verification Status: </b>
+                    <p>
+                        <%=currentStatus%>
+                    </p>
+                </div>
+            </div>
+            <div class="moreDiv">
+                <p>You must follow some speacific rules to go on the job. Read this <a href="" class="blue">document</a>
+                    carefully. If you don't follow this rules, your account will be deleted and you won't be able to use
+                    this website anymore.</p>
+            </div>
+        </div>
+        <div class="portionLists">
+            <div class="parentofStrips">
+                <% for(let i=0; i<workerAdded.opprtunities.length; i++) { %>
+                    <div class="strip">
+                        <div class="clientName">
+                            <%=workerAdded.opprtunities[i]%>
+                        </div>
+                        <div class="controllersWorker">
+                            <a href=""><i class="fa-solid fa-check"></i></a>
+                            <a href=""><i class="fa-solid fa-xmark"></i></a>
+                            <a href=""><i class="fa-regular fa-rectangle-list"></i></a>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
