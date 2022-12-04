@@ -9,6 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .required{
+            color: red;
+            font-weight: normal;
+        }
+    </style>
 </head>
 
 <body>
@@ -70,27 +76,29 @@
 
         <div class="form">
             <form class="row g-3" action="/registerWorker" method="post">
+                <h3>Basic Details</h3>
+                <hr>
                 <div class="col-md-6">
-                    <label for="inputEmail4" class="form-label">Your name here: </label>
+                    <label for="inputEmail4" class="form-label">Your name here<span class="required">*</span></label>
                     <input type="text" name="name" class="form-control" id="inputEmail4" autocomplete="off" required>
                 </div>
                 <div class="col-md-6">
-                    <label for="inputPassword4" class="form-label">Your email here: </label>
+                    <label for="inputPassword4" class="form-label">Your email here<span class="required">*</span></label>
                     <input type="email" class="form-control" name="email" id="inputPassword4" autocomplete="off"
                         required>
                 </div>
                 <div class="col-md-6">
-                    <label for="inputPassword4" class="form-label">Type a password: </label>
+                    <label for="inputPassword4" class="form-label">Type a password<span class="required">*</span></label>
                     <input type="password" class="form-control" name="password" id="inputPassword4" autocomplete="off"
                         required>
                 </div>
                 <div class="col-md-6">
-                    <label for="inputPassword4" class="form-label">Confirm password: </label>
+                    <label for="inputPassword4" class="form-label">Confirm password<span class="required">*</span></label>
                     <input type="password" class="form-control" name="conpassword" id="inputPassword4"
                         autocomplete="off" required>
                 </div>
                 <div class="col-12">
-                    <label for="inputAddress" class="form-label">Address</label>
+                    <label for="inputAddress" class="form-label">Address<span class="required">*</span></label>
                     <input type="text" class="form-control" id="inputAddress" name="address1"
                         placeholder="Enter your permanent address here" autocomplete="off" required>
                 </div>
@@ -100,28 +108,9 @@
                         placeholder="Optional field, can enter the address of your place where you are living temporarily"
                         autocomplete="off">
                 </div>
-                <div class="col-6 timeReleated">
-                    <label>Incoming time</label>
-                    <div class="arrangeTime">
-                        <input type="time" id="incomingTime">
-                        <button id="setIncoming" class="setTime" title="It will convert the time to 12hrs format, initially it will show time in 24hrs format">Set time</button>
-                    </div>
-                    <div id="optArrival">
-                        7:30 PM
-                    </div>
-                </div>
-                <div class="col-6 timeReleated">
-                    <label>Outgoing time</label>
-                    <div class="arrangeTime">
-                        <input type="time" id="outgoingTime">
-                        <button id="setOutgoing" class="setTime" title="It will convert the time to 12hrs format, initially it will show time in 24hrs format">Set time</button>
-                    </div>
-                    <div id="optOutgoing">
-                        10:45 PM
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <label for="inputState" class="form-label">Type of job you want: </label>
+                
+                <div class="col-md-5">
+                    <label for="inputState" class="form-label">Type of job you want<span class="required">*</span></label>
                     <select id="inputState" class="form-select" name="jobType" required>
                         <option selected>--nothing-selected--</option>
                         <option>Makeup</option>
@@ -142,16 +131,37 @@
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label for="inputCity" class="form-label">Place of work: </label>
+                    <label for="inputCity" class="form-label">Place of work</label>
                     <input type="text" class="form-control" id="inputCity" value="Sai Nagar, Amravati" disabled>
                 </div>
-                <div class="col-md-4">
-                    <label for="inputPassword4" class="form-label">Your contact number here: </label>
+                <div class="col-md-5">
+                    <label for="inputPassword4" class="form-label">Your contact number here<span class="required">*</span></label>
                     <input type="number" class="form-control" name="phone" id="inputPassword4" autocomplete="off"
                         required>
                 </div>
-                <div class="col-md-6">
-                    <label for="inputState" class="form-label">Nagar you want to work?</label>
+                <div class="col-4 timeReleated">
+                    <label>Incoming time (Optional)</label>
+                    <div class="arrangeTime">
+                        <input type="time" id="incomingTime">
+                        <button id="setIncoming" class="setTime" title="It will convert the time to 12hrs format, initially it will show time in 24hrs format" name="arrivaltime">Set time</button>
+                    </div>
+                    <div id="optArrival">
+                        00:00 AM
+                    </div>
+                </div>
+                <div class="col-4 timeReleated">
+                    <label>Outgoing time (Optional)</label>
+                    <div class="arrangeTime">
+                        <input type="time" id="outgoingTime">
+                        <button id="setOutgoing" class="setTime" title="It will convert the time to 12hrs format, initially it will show time in 24hrs format" name="departureTime">Set time</button>
+                    </div>
+                    <div id="optOutgoing">
+                        00:00 PM
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Nagar you want to work<span class="required">*</span></label>
                     <select id="inputState" class="form-select" name="nagar" required>
                         <option selected>--nothing-selected--</option>
                         <option>Texas</option>

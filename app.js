@@ -254,7 +254,9 @@ app.get('/clientDashboard', authenticate , authclient, async function(req, res){
         length: step,
         imagearray: ["https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?cs=srgb&dl=pexels-eberhard-grossgasteiger-1366919.jpg&fm=jpg","https://i.pinimg.com/736x/8c/b5/ee/8cb5ee0a8fc8dd21497f0c2d0ebe1238.jpg","https://cdn.statusqueen.com/mobilewallpaper/thumbnail/mobile_wallpaper257-744.jpg","https://wallpapers.com/images/high/code-vein-game-free-pure-4k-ultra-hd-mobile-wallpaper-uqg4qozrnlbblg3p.jpg"],
         lengthCompare: lengthofCompareList,
-        lengthHire: lengthofHireList
+        lengthHire: lengthofHireList,
+        fetchName: req.rootClient.name,
+        fetchID: req.rootClient.clientID
     })
 });
 
@@ -298,6 +300,31 @@ app.get('/hireWorker/', authenticate, authclient, async function(req, res){
     await Client.findOneAndUpdate({name: req.rootClient.name}, {$push: {hireList: findWorkerthis.name}});
     return res.status(200).redirect('back');
 })
+
+
+// 03/02/2022 == need to work on this section (Adding relevant worker to the list of needed--- in short call it filter.. .it sooths me...!)
+
+app.get('/searchHairStylers', authclient, async function(req, res){
+    const getHairStylers = await User.find({jobType: "Hair Styler"});
+    const gotEm = getHairStylers;
+    var searchNames = [];
+    var searchWorkerID = [];
+    // console.log(`${gotEm[0].name}`, `${gotEm[0].workerID}`);
+    for(let i = 0; i<gotEm.length; i++){
+    gotEm.forEach(function(e){
+            if(searchNames[i] == e.name){
+                console.log('cannot push same elements more than once.');
+            }
+            else{
+                searchNames.push(e.name);
+            }
+        })
+    }
+    console.log(searchNames);
+    return res.redirect('back')
+})
+
+
 
 app.listen(port, (err) => {
     if (err == true) { console.log('error occured at initialisation') } else {

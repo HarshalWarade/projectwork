@@ -42,6 +42,12 @@ const userSchema = new mongoose.Schema({
     approvedStatus: {
         type: String
     },
+    arrivaltime: {
+        type: String
+    },
+    departureTime: {
+        type: String
+    },
     opprtunities: [String],
     tokens: [{
         token: {
@@ -54,8 +60,10 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 });
 
-userSchema.pre('save', async function(next){
-    if(this.isModified('password')){
+userSchema.pre('save', async function (next)
+{
+    if (this.isModified('password'))
+    {
         this.password = await bcrypt.hash(this.password, 12);
     }
     next();

@@ -19,8 +19,8 @@
 
 
     <div class="mainHeader">
-        <div class="logo">
-            <a href=""><i class="fa-solid fa-moon"></i></a>
+        <div class="logo" style="font-size: 18px;">
+            <%=fetchName%> -- <%=fetchID%>
         </div>
         <form action="/searchWorker" method="get">
             <input type="search" autocomplete="off" placeholder="Type worker name to search..." name="search"
@@ -78,48 +78,62 @@
 
     <!-- <div class="container my-5" id="wCards"> -->
     <div class="mainHolderParent">
-        <div class="holdMap">
-            <h3>Area of service and work</h3>
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29818.202545454405!2d77.7160433735339!3d20.901240158310838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd6bb2b898fe3d1%3A0xf953b51392c19e74!2sSai%20Nagar%2C%20Amravati%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1669896494751!5m2!1sen!2sin"
-                width="400" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
+        <ul class="filters">
+            <li><a href="/searchAll" class="active">All</a></li>
+            <li><a href="/searchElectricians">Electricians</a></li>
+            <li><a href="/searchMechanics">Mechanics</a></li>
+            <li><a href="/searchFitters">Fitters</a></li>
+            <li><a href="/searchPlumbers">Plumbers</a></li>
+            <li><a href="/searchMaids">Maids</a></li>
+            <li><a href="/searchCooker">Cooker Repairings</a></li>
+            <li><a href="/searchMixer">Mixer Repairings</a></li>
+            <li><a href="/searchGas">Gas Repairings</a></li>
+            <li><a href="/searchMakeup">MakeUp</a></li>
+            <li><a href="/searchBeautyServices">Beauty Services</a></li>
+            <li><a href="/searchHairStylers">Hair Stylers</a></li>
+            <li><a href="/searchCostumeDesigners">Costume Desingers</a></li>
+            <li><a href="/searchTailors">Tailors</a></li>
+            <li><a href="/searchProductDeleveries">Product Deliveries</a></li>
+            <li><a href="/searchChief">Chiefs (Cooks)</a></li>
+            <li><a href="/searchTiffinServices">Tiffin Services</a></li>
+        </ul>
         <div class="mainHolder" id="grabThis">
-            <% for(let i=0; i<length; i++){ %>
+            <div class="back-actions">
+                <% for(let i=0; i<length; i++){ %>
 
-                <div class="hcard">
-                    <div class="imageSection">
-                        <img src="<%=imagearray[i]%>" alt="loading...">
+                    <div class="hcard">
+                        <div class="imageSection">
+                            <img src="<%=imagearray[i]%>" alt="loading...">
+                        </div>
+                        <div class="nameSection commonDivIKnow">
+                            <p><b>Name: </b>
+                                <%=result[i].name%>
+                            </p>
+                        </div>
+                        <div class="workerID commonDivIKnow">
+                            <p><b>WorkerID: </b>
+                                <%=result[i].workerID%>
+                            </p>
+                        </div>
+                        <div class="typeSection commonDivIKnow">
+                            <p><b>Work Type: </b>
+                                <%=result[i].jobType%>
+                            </p>
+                        </div>
+                        <div class="verificationStatus commonDivIKnow">
+                            <p><b>Verification Status: </b>
+                                <%=result[i].approvedStatus%>
+                            </p>
+                        </div>
+                        <div class="controllers commonDivIKnow">
+                            <a href="">See details</a>
+                            <a href="/getWorker/?cb5ee0a8fc8dd21497f0c2d0ebe1238=<%=result[i].workerID%>">Add to
+                                list</a>
+                            <a href="/hireWorker/?kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL=<%=result[i].workerID%>">Hire</a>
+                        </div>
                     </div>
-                    <div class="nameSection commonDivIKnow">
-                        <p><b>Name: </b>
-                            <%=result[i].name%>
-                        </p>
-                    </div>
-                    <div class="workerID commonDivIKnow">
-                        <p><b>WorkerID: </b>
-                            <%=result[i].workerID%>
-                        </p>
-                    </div>
-                    <div class="typeSection commonDivIKnow">
-                        <p><b>Work Type: </b>
-                            <%=result[i].jobType%>
-                        </p>
-                    </div>
-                    <div class="verificationStatus commonDivIKnow">
-                        <p><b>Verification Status: </b>
-                            <%=result[i].approvedStatus%>
-                        </p>
-                    </div>
-                    <div class="controllers commonDivIKnow">
-                        <a href="">See details</a>
-                        <a href="/getWorker/?cb5ee0a8fc8dd21497f0c2d0ebe1238=<%=result[i].workerID%>">Add to list</a>
-                        <a href="/hireWorker/?kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL=<%=result[i].workerID%>">Hire</a>
-                    </div>
-                </div>
-                <% } %>
+                    <% } %>
+            </div>
         </div>
     </div>
     <!-- </div> -->
