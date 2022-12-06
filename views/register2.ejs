@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProcedurialSingUp</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .allHeight {
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+            border: 2px solid red;
+        }
+
+        h1 {
+            height: 10vh;
+            display: flex;
+            font-weight: 300;
+            justify-content: center;
+            gap: 0.4rem;
+            align-items: center;
+        }
+        .dynamicInput{
+            height: 7vh;
+            width: 40vw;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            font-size: 18px;
+            padding: 0 0 0 13px;
+        }
+        .actionBtn{
+            text-decoration: none;
+            color: white;
+            background: #f24;
+            padding: 10px 30px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome! We'll be happy to have with with us!</h1>
+    <form action="/registerWorker" method="post">
+        <div class="allHeight">
+            <h1>Start with entering your <u>name</u>.</h1>
+            <input type="text" class="dynamicInput" name="name" autocomplete="off" required>
+            <a href="#" id="passOne" class="actionBtn">Continue</a>
+        </div>
+    </form>
+</body>
+
+</html>

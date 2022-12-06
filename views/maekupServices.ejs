@@ -5,199 +5,455 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>BeautyServices</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
         * {
             margin: 0;
             padding: 0;
+            font-family: 'Ubuntu', sans-serif;
             box-sizing: border-box;
-            font-family: 'Noto Sans', sans-serif;
         }
 
-        .headerDiv {
+        #parentHolder {
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+            height: 100vh;
+        }
+
+        .scrollableSidebar {
+            background: linear-gradient(125deg, #ff2478, #6bb0ff);
+            display: grid;
+            height: 100vh;
+            gap: .1rem
+        }
+
+        .scrollableSidebar a {
+            padding: 0 0 0 20px;
+            text-decoration: none;
+            display: flex;
+            transition: 0.4s ease;
+            color: #444;
+            align-items: center;
+            background: rgb(243, 243, 243);
+        }
+
+        .scrollableSidebar a.active {
+            background: none;
+            background: linear-gradient(125deg, #ff2478, #6bb0ff);
+            transition: 0.4s ease;
+            color: #fff;
+            transform: translateX(16px);
+        }
+
+        .scrollableSidebar a:hover {
+            background: none;
+            transform: translateX(16px);
+            background: linear-gradient(125deg, #ff2478, #6bb0ff);
+            transition: 0.4s ease;
+            color: #fff;
+        }
+
+        .headingTopDiv {
+            max-height: 100vh;
+            overflow-y: scroll;
+        }
+
+        .mainHeading {
+            text-align: center;
+            height: 15vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mainHeading .addEffect {
+            color: #ff2478;
+        }
+
+        .taglineMakeup {
+            text-align: center;
+            color: #555;
+        }
+
+        .imagesAndText {
+            height: 44vh;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .imagesAndText img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 97%;
+            border: 8px solid white;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.22);
+            width: auto;
+        }
+
+        * {
+            outline: none;
+        }
+
+        .text-beauty {
+            padding: 20px;
+            line-height: 27px;
+            text-align: justify;
+        }
+
+        .controllers-beauty-btns {
             height: 10vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            gap: 10rem;
         }
 
-
-        .divSearch {
-            width: 80%;
-        }
-
-        .formDiv {
-            display: flex;
-            width: 60%;
+        .controllers-beauty-btns a {
+            text-decoration: none;
+            padding: 10px 30px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 14px;
+            color: #fff;
+            transition: 0.4s ease;
+            background: #ff2478;
             border-radius: 4px;
-            margin: 0 auto;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        .formDiv input {
-            height: 5vh;
-            padding: 0 0 0 10px;
-            /* border-radius: 4px; */
-            outline: none;
-            border: none;
+        .controllers-beauty-btns a:hover {
+            background: #e7216d;
+            transition: 0.4s ease;
+        }
+
+        .controllers-beauty-btns a:nth-child(2) {
+            border: 2px solid #ff2478;
+            color: #ff2478;
             background: none;
-            background: rgba(255, 255, 255, 0.23);
-            background: #F2F2F5;
-            color: #555;
-            backdrop-filter: blur(20px);
-            width: 100%;
-            font-size: 16px;
         }
 
-        .formDiv input::placeholder {
-            color: #999;
+        .controllers-beauty-btns a:nth-child(2):hover {
+            background: #6bb0ff;
+            border: 2px solid #6bb0ff;
+            color: #fff;
+            transition: 0.4s ease;
         }
 
-        .formDiv button {
-            color: white;
-            background: #F2F2F5;
-            color: #000;
-            padding: 9.7px 20px;
-            border: none;
-            outline: none;
-            cursor: pointer;
+        .shortDetail {
+            color: #ff2478;
+            text-decoration: none;
         }
 
-        .imageBeautyHolder {
-            height: 60vh;
-        }
-
-        .imgReals {
-            height: 90%;
+        .mainCate {
+            padding: 20px;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .imgReals img {
-            height: 100%;
-            border: 9px solid #fff;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.22);
-        }
-
-        .heading {
-            padding: 30px 0;
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
+            justify-content: space-evenly;
             flex-direction: column;
         }
 
-        .makeEffect {
-            font-weight: 900;
-            color: #FD3559;
+        .cp {
+            padding: 0 20px;
         }
 
-        .controllerButtons {
+        .airBrush {
+            height: 22vh;
+            flex-direction: column;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .airBrush p {
+            line-height: 33px;
+        }
+
+        .imgforAirbrush {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 50vh;
+        }
+
+        .imgforAirbrush img {
+            border: 8px solid #fff;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.22);
+            height: 100%;
+        }
+
+        /* Imported */
+
+        .mainHeader {
+            height: 10vh;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mainHeader .logo {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+        }
+
+        .mainHeader .logo a {
+            color: black;
+        }
+
+        .mainHeader .mainOptions {
+            flex: 1;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            /* gap: 3rem; */
+        }
+
+        .mainHeader .mainOptions a {
+            text-decoration: none;
+            color: black;
+            font-size: 22px;
+        }
+
+        .mainHeader form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 3;
+            gap: 0.5rem;
+            height: 100%;
+        }
+
+        .mainHeader form input {
+            border: 1px solid #ccc;
+            height: 50%;
+            padding: 0 0 0 10px;
+            border-radius: 6px;
+            width: 80%;
+        }
+
+        .mainHeader form button {
+            height: 50%;
+            padding: 0 30px;
+            cursor: pointer;
+            border-radius: 4px;
+            outline: none;
+            border: none;
+            background: #00bfa6;
+            color: white;
+        }
+
+        /* #wCards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.border{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+} */
+
+        .mainHolderArranger {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .arrangeProperly {
+            background: red;
+            color: white;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            border-radius: 50%;
+            width: 20px;
+        }
+
+        .arrangeProperly:nth-child(1) {
+            background: none;
+            background: rgb(210, 156, 255);
+            color: white;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            border-radius: 50%;
+            width: 20px;
+        }
+
+
+        .hcard {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.10);
+            border-radius: 7px;
+            width: auto;
+            padding: 30px;
+            height: auto;
+        }
+
+        .hcard .imageSection {
+            height: 30vh;
+            border-radius: 50%;
+            margin: 0 auto;
+            width: 30vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hcard .nameSection {
+            margin-top: 12px;
+        }
+
+        .hcard .imageSection img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .hcard .commonDivIKnow {
+            height: 5vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hcard .controllers {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .hcard .controllers a {
+            text-decoration: none;
+            color: white;
+            background: #444;
+            font-size: 14px;
+            padding: 6px 23px;
+            border-radius: 4px;
+        }
+
+        .mainHolder {
+            height: auto;
+            padding: 30px;
+            flex-wrap: wrap;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .mainHolderParent {
+            display: grid;
+            grid-template-columns: 1.2fr 7fr;
+        }
+
+        .back-actions {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 2rem;
         }
 
-        .controllerButtons a {
-            padding: 10px 30px;
-            background: #FD3559;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-
-        .categories{
-            margin: 20px 0;
-            padding: 0 20px;
-            width: 98vw;
-            height: 13vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-            gap: 1rem;
-        }
-        .categories a{
-            text-decoration: none;
-            display: flex;
-            justify-content: center;
-            border-radius: 4px;
-            color: rgb(123, 123, 123);
-            align-items: center;
-            background: rgb(255, 249, 203);
-        }
-        .categories a.active{
-            background: yellow;
-        }
-        @media screen and (max-width: 380px){
-
-            .imgReals{
-                flex-direction: row;
-            }
+        .hcard .controllers a:nth-child(2) {
+            background: none;
+            border: 1px solid #444;
+            color: #444;
         }
     </style>
 </head>
 
 <body>
-    <div class="headerDiv">
-        <div class="divSearch">
-            <form action="/searchMakeup" method="get" class="formDiv">
-                <input type="search" name="searchInp" placeholder="Type name you know or explore the best"
-                    autocomplete="off" required>
-                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
+    <div id="parentHolder">
+        <div class="scrollableSidebar">
+            <a href="/clientDashboard">All</a>
+            <a href="/searchElectricians">Electricians</a>
+            <a href="/searchMechanics">Mechanics</a>
+            <a href="/searchFitters">Fitters</a>
+            <a href="/searchPlumbers">Plumbers</a>
+            <a href="/searchMaids">Maids</a>
+            <a href="/searchCooker">Cooker Repairings</a>
+            <a href="/searchMixer">Mixer Repairings</a>
+            <a href="/searchGas">Gas Repairings</a>
+            <a href="/searchMakeup" class="active">MakeUp</a>
+            <a href="/searchBeautyServices">Beauty Services</a>
+            <a href="/searchHairStylers">Hair Stylers</a>
+            <a href="/searchCostumeDesigners">Costume Desingers</a>
+            <a href="/searchTailors">Tailors</a>
+            <a href="/searchProductDeleveries">Product Deliveries</a>
+            <a href="/searchChief">Chiefs (Cooks)</a>
+            <a href="/searchTiffinServices">Tiffin Services</a>
         </div>
-    </div>
-    <div class="categories">
-        <a href="/searchAll">All</a>
-        <a href="/searchElectricians">Electricians</a>
-        <a href="/searchMechanics">Mechanics</a>
-        <a href="/searchFitters">Fitters</a>
-        <a href="/searchPlumbers">Plumbers</a>
-        <a href="/searchMaids">Maids</a>
-        <a href="/searchCooker">Cooker Repairings</a>
-        <a href="/searchMixer">Mixer Repairings</a>
-        <a href="/searchGas">Gas Repairings</a>
-        <a href="/searchMakeup" class="active">MakeUp</a>
-        <a href="/searchHairStylers">Hair Stylers</a>
-        <a href="/searchCostumeDesigners">Costume Desingers</a>
-        <a href="/searchTailors">Tailors</a>
-        <a href="/searchProductDeleveries">Product Deliveries</a>
-        <a href="/searchChief">Chiefs (Cooks)</a>
-        <a href="/searchTiffinServices">Tiffin Services</a>
-    </div>
-    <div class="imageBeautyHolder">
-        <div class="imgReals">
-            <img src="https://images.unsplash.com/photo-1610047614301-13c63f00c032?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
-                alt="loading...">
-            <img src="https://images.unsplash.com/flagged/photo-1551854716-8b811be39e7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
-                alt="loading...">
-            <img src="https://w0.peakpx.com/wallpaper/673/1014/HD-wallpaper-indian-bride-beauty-bollywood-charming-gorgeous-india-red-hair-stunning-wedding.jpg"
-                alt="loading...">
-            <img src="https://1.bp.blogspot.com/-ZMn3E0G4cu0/YM-L7LYVy4I/AAAAAAAAAaM/wrf1re0dnNArXNT-b1yTHaa6vtVcq5rpACPcBGAYYCw/s705/Indian%2BBridal%2BMakeup%2BPhotos.jpg"
-                alt="loading...">
-            <img src="https://mallurepost.com/upload/2022/08/19/Exclusive-very-hot-photos-gallery-Raksha-Raj-in-bridal-saree-hot-and-sexy-photos--71102.jpg"
-                alt="loading...">
-        </div>
-        <div class="heading">
-            <h1><span class="makeEffect">Shaadi makeup?</span> This is the right place!</h1>
-            <br>
-            <p>Hire and get the work done!</p>
-        </div>
-        <div class="controllerButtons">
-            <a href="" class="genBtn">Explore</a>
-            <a href="" class="genBtn">Tell Me More</a>
+        <div class="headingTopDiv">
+            <h1 class="mainHeading"><span class="addEffect">Bridal Makup?</span> You're at the right spot!</h1>
+            <p class="taglineMakeup">Highly trained professionals, out to help you look the best!</p>
+            <hr
+                style="width: 50%; margin: 0 auto; margin-top: 40px; height: .5vh; border: none; outline: none; background: linear-gradient(135deg,rgb(255, 36, 120),#fffd6b);">
+            <div class="imagesAndText">
+
+                <img src="https://images.unsplash.com/photo-1610047614301-13c63f00c032?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
+                    alt="loading...">
+                <img src="https://images.unsplash.com/flagged/photo-1551854716-8b811be39e7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
+                    alt="loading...">
+                <img src="https://w0.peakpx.com/wallpaper/673/1014/HD-wallpaper-indian-bride-beauty-bollywood-charming-gorgeous-india-red-hair-stunning-wedding.jpg"
+                    alt="loading...">
+                <img src="https://1.bp.blogspot.com/-ZMn3E0G4cu0/YM-L7LYVy4I/AAAAAAAAAaM/wrf1re0dnNArXNT-b1yTHaa6vtVcq5rpACPcBGAYYCw/s705/Indian%2BBridal%2BMakeup%2BPhotos.jpg"
+                    alt="loading...">
+                <img src="https://mallurepost.com/upload/2022/08/19/Exclusive-very-hot-photos-gallery-Raksha-Raj-in-bridal-saree-hot-and-sexy-photos--71102.jpg"
+                    alt="loading...">
+            </div>
+            <div class="text-beauty">
+                <p>Every form of makeup service is accessible, whether it is for a party makeup, a wedding, or even a
+                    casual occasion. Here, you'll find all of the greatest people to make you look and feel the best.
+                    They are all well-skilled professionals in their respective industries. Remember not to purchase
+                    services from <a href="" class="shortDetail"
+                        title="The ones who has the label of 'Not verified yet!' in their profiles.">unverified</a>
+                    individuals.</p>
+            </div>
+            <div class="controllers-beauty-btns">
+                <a href="" class="genBtn">Hire Now</a>
+                <a href="" class="genBtn">Check Categories</a>
+            </div>
+            <div class="sectionTwo">
+                <div class="mainCate cp">
+                    <h1>Categories</h1>
+                    <hr
+                        style="width: 50%; margin-top: 40px; height: .5vh; border: none; outline: none; background: linear-gradient(135deg,rgb(255, 36, 120),#fffd6b);">
+                </div>
+                <div class="airBrush cp">
+                    <h2>AirBrush Makeup</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolorem unde, corrupti quae
+                        aspernatur a, rem tenetur in iure harum nesciunt! Quibusdam sed ipsa, commodi eveniet voluptas
+                        expedita. Laboriosam, doloribus.</p>
+                </div>
+                <div class="imgforAirbrush">
+                    <img src="https://www.shaadidukaan.com/vogue/wp-content/uploads/2019/10/airbrush-makeup-cons.jpg"
+                        alt="loading...">
+                    <img src="https://www.shaadidukaan.com/vogue/wp-content/uploads/2019/10/Highlighter.jpeg"
+                        alt="loading...">
+                    <img src="https://www.shaadidukaan.com/vogue/wp-content/uploads/2019/10/flaky-effect.jpeg"
+                        alt="loading...">
+                </div>
+                <div class="mainHolder" id="grabThis">
+                    <div class="back-actions">
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
