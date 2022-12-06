@@ -213,7 +213,7 @@ input[type="number"] {
 .setTime{
     padding: 7px 20px;
     border-radius: 4px;
-    background: rgb(0, 0, 0);
+    background: #444;
     color: white;
 }
 /* End of workerlogin */

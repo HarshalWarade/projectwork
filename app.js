@@ -324,7 +324,10 @@ app.get('/searchHairStylers', authclient, async function(req, res){
     return res.redirect('back')
 })
 
-
+// Page Routes -- DiffJobs..
+app.get('/searchMakeup', authclient, async function(req, res){
+    return res.status(200).render('maekupServices');
+})
 
 app.listen(port, (err) => {
     if (err == true) { console.log('error occured at initialisation') } else {

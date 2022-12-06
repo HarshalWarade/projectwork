@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        .headerDiv {
+            height: 10vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .divSearch {
+            width: 80%;
+        }
+
+        .formDiv {
+            display: flex;
+            width: 60%;
+            border-radius: 4px;
+            margin: 0 auto;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .formDiv input {
+            height: 5vh;
+            padding: 0 0 0 10px;
+            /* border-radius: 4px; */
+            outline: none;
+            border: none;
+            background: none;
+            background: rgba(255, 255, 255, 0.23);
+            background: #F2F2F5;
+            color: #555;
+            backdrop-filter: blur(20px);
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .formDiv input::placeholder {
+            color: #999;
+        }
+
+        .formDiv button {
+            color: white;
+            background: #F2F2F5;
+            color: #000;
+            padding: 9.7px 20px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .imageBeautyHolder {
+            height: 60vh;
+        }
+
+        .imgReals {
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .imgReals img {
+            height: 100%;
+            border: 9px solid #fff;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.22);
+        }
+
+        .heading {
+            padding: 30px 0;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            flex-direction: column;
+        }
+
+        .makeEffect {
+            font-weight: 900;
+            color: #FD3559;
+        }
+
+        .controllerButtons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .controllerButtons a {
+            padding: 10px 30px;
+            background: #FD3559;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .categories{
+            margin: 20px 0;
+            padding: 0 20px;
+            width: 98vw;
+            height: 13vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+        .categories a{
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            border-radius: 4px;
+            color: rgb(123, 123, 123);
+            align-items: center;
+            background: rgb(255, 249, 203);
+        }
+        .categories a.active{
+            background: yellow;
+        }
+        @media screen and (max-width: 380px){
+
+            .imgReals{
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="headerDiv">
+        <div class="divSearch">
+            <form action="/searchMakeup" method="get" class="formDiv">
+                <input type="search" name="searchInp" placeholder="Type name you know or explore the best"
+                    autocomplete="off" required>
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="categories">
+        <a href="/searchAll">All</a>
+        <a href="/searchElectricians">Electricians</a>
+        <a href="/searchMechanics">Mechanics</a>
+        <a href="/searchFitters">Fitters</a>
+        <a href="/searchPlumbers">Plumbers</a>
+        <a href="/searchMaids">Maids</a>
+        <a href="/searchCooker">Cooker Repairings</a>
+        <a href="/searchMixer">Mixer Repairings</a>
+        <a href="/searchGas">Gas Repairings</a>
+        <a href="/searchMakeup" class="active">MakeUp</a>
+        <a href="/searchHairStylers">Hair Stylers</a>
+        <a href="/searchCostumeDesigners">Costume Desingers</a>
+        <a href="/searchTailors">Tailors</a>
+        <a href="/searchProductDeleveries">Product Deliveries</a>
+        <a href="/searchChief">Chiefs (Cooks)</a>
+        <a href="/searchTiffinServices">Tiffin Services</a>
+    </div>
+    <div class="imageBeautyHolder">
+        <div class="imgReals">
+            <img src="https://images.unsplash.com/photo-1610047614301-13c63f00c032?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
+                alt="loading...">
+            <img src="https://images.unsplash.com/flagged/photo-1551854716-8b811be39e7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
+                alt="loading...">
+            <img src="https://w0.peakpx.com/wallpaper/673/1014/HD-wallpaper-indian-bride-beauty-bollywood-charming-gorgeous-india-red-hair-stunning-wedding.jpg"
+                alt="loading...">
+            <img src="https://1.bp.blogspot.com/-ZMn3E0G4cu0/YM-L7LYVy4I/AAAAAAAAAaM/wrf1re0dnNArXNT-b1yTHaa6vtVcq5rpACPcBGAYYCw/s705/Indian%2BBridal%2BMakeup%2BPhotos.jpg"
+                alt="loading...">
+            <img src="https://mallurepost.com/upload/2022/08/19/Exclusive-very-hot-photos-gallery-Raksha-Raj-in-bridal-saree-hot-and-sexy-photos--71102.jpg"
+                alt="loading...">
+        </div>
+        <div class="heading">
+            <h1><span class="makeEffect">Shaadi makeup?</span> This is the right place!</h1>
+            <br>
+            <p>Hire and get the work done!</p>
+        </div>
+        <div class="controllerButtons">
+            <a href="" class="genBtn">Explore</a>
+            <a href="" class="genBtn">Tell Me More</a>
+        </div>
+    </div>
+</body>
+
+</html>
